@@ -8,7 +8,27 @@
     <script type="module" src="./index.js"></script>
   </head>
   <body>
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <include src="./partials/example.html"></include>
+    <form class="search-form" id="search-form">
+      <div class="input-container">
+        <input
+          type="text"
+          name="searchQuery"
+          autocomplete="off"
+          placeholder="Search images..."
+        />
+        <button type="submit" name="submitBtn">
+          <svg width="30" height="31">
+            <use href="./images/icons8-search.svg#search"></use>
+          </svg>
+        </button>
+      </div>
+    </form>
+    <div class="gallery"></div>
+    <div id="loader"></div>
+    <button class="scroll-up">
+      <svg width="40" height="40">
+        <use href="./images/up-arrow-svgrepo-com.svg#scrollUp"></use>
+      </svg>
+    </button>
   </body>
 </html>
