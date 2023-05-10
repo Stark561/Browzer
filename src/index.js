@@ -8,7 +8,7 @@ const input = form.elements.searchQuery;
 const btn = form.elements.submitBtn;
 const gallery = document.querySelector('.gallery');
 const loader = document.querySelector('#loader');
-const scrollUp = document.querySelector('.scroll-up');
+const btnScrollUp = document.querySelector('.scroll-up');
 form.addEventListener('submit', onBtnSubmit);
 let page = 1;
 let totalImages = '';
@@ -80,7 +80,6 @@ async function loadContent() {
   }
 }
 
-
  function renderMarkup(data) {
  return data.map(({webformatURL,largeImageURL,tags, likes, views, comments, downloads}) => `<a href="${largeImageURL}"><div class="photo-card">
   <img src="${webformatURL}" alt="${tags}" loading="lazy" />
@@ -106,7 +105,7 @@ async function loadContent() {
  ).join('')
 };
 
-scrollUp.addEventListener('click', onScrollUp);
+btnScrollUp.addEventListener('click', onScrollUp);
 
 function onScrollUp(e) {
   window.scrollTo({
