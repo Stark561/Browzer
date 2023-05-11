@@ -1,4 +1,4 @@
-function renderMarkup(data) {
+export function renderMarkup(data) {
     return data.map(({webformatURL,largeImageURL,tags, likes, views, comments, downloads}) => 
     `<a href="${largeImageURL}"><div class="photo-card">
      <img src="${webformatURL}" alt="${tags}" loading="lazy" />
