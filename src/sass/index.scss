@@ -15,6 +15,20 @@ background: rgb(21,12,145);
 background: linear-gradient(90deg, rgba(21,12,145,1) 0%, rgba(142,34,117,1) 13%, rgba(22,131,200,1) 50%, rgba(195,84,203,1) 69%, rgba(88,84,203,1) 98%);
 }
 
+.btn-form{
+    background-color: aquamarine;
+    width: 70px;
+    height: 40px;
+    border-radius: 10px;
+    margin-left: 10px;
+    transition: ease-out 300ms;
+}
+
+.btn-form:hover,
+.btn-form:focus{
+    background-color: rgb(105, 103, 216);
+}
+
 .search-string{
     outline: none;
     width: 250px;

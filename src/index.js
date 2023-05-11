@@ -2,6 +2,7 @@ import axios from "axios";
 import simpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 import Notiflix from "notiflix";
+import smoothScroll from './js/smoothScroll.js';
 
 const form = document.querySelector('.header');
 const loader = document.querySelector('#loader');
@@ -20,24 +21,6 @@ const options = {
 
   let lightbox = new simpleLightbox('.gallery a');
 
- function onBtnSubmit(e) {
-  e.preventDefault();
-  gallery.innerHTML = '';
-  isFormSubmitted = false;
-  page = 1;
-    
-  if (observer) {
-    observer.unobserve(loader);
-  }
-  observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      loadContent();
-      page++;
-    }
-  }, options);
-  observer.observe(loader);
- }
-
   async function loadContent() {
   const inputValue = input.value;
   const API_KEY = '36186802-862f6fad69a85448277218aac';
@@ -48,10 +31,10 @@ const options = {
   const response = await axios.get(url);
   totalImages = response.data.totalHits;
   if (totalImages === 0) {
-    return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
+    return Notiflix.Notify.failure('К сожалению, нет изображений, соответствующих вашему поисковому запросу. Пожалуйста, попробуйте еще раз.');
   } 
   if (!isFormSubmitted) {
-    Notiflix.Notify.success(`Hooray! We found ${totalImages} images.`);
+    Notiflix.Notify.success(`Ура! Мы нашли ${totalImages} изображений.`);
     isFormSubmitted = true;
   }
 
@@ -72,9 +55,27 @@ const options = {
       setTimeout(smoothScroll, 400);
     }
   } catch (err) {
-    Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
+    Notiflix.Notify.failure("Сожалеем, но вы достигли конца результатов поиска.");
   }
 }
+
+function onBtnSubmit(e) {
+  e.preventDefault();
+  gallery.innerHTML = '';
+  isFormSubmitted = false;
+  page = 1;
+    
+  if (observer) {
+    observer.unobserve(loader);
+  }
+  observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      loadContent();
+      page++;
+    }
+  }, options);
+  observer.observe(loader);
+ }
 
  function renderMarkup(data) {
  return data.map(({webformatURL,largeImageURL,tags, likes, views, comments, downloads}) => 
@@ -101,14 +102,3 @@ const options = {
 </div></a>`
  ).join('')
 };
-
-function smoothScroll() {
-  const { height: cardHeight } = document
-    .querySelector(".gallery")
-    .firstElementChild.getBoundingClientRect();
-
-  window.scrollBy({
-    top: cardHeight * 2,
-    behavior: "smooth",
-  });
-}
