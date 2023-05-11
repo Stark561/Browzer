@@ -4,15 +4,7 @@
 .input-container {
     position: relative;
 }
-.search-form {
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 20px;
-border: 10px solid rgb(100, 100, 150);
-// background-color: rgb(100, 100, 150) ;
-box-shadow: rgba(232, 255, 150, 0.35) 0px 5px 15px;
-}
+
 .search-form input {
     position:relative;
     height: 36px;
@@ -23,9 +15,7 @@ box-shadow: rgba(232, 255, 150, 0.35) 0px 5px 15px;
     font-weight: 600;
     padding-left: 10px;
 }
-.search-form input:focus {
-    outline: rgba(3, 112, 96, 0.94);
-}
+
 .search-form button {
     position: absolute;
     top: 0;
@@ -41,14 +31,7 @@ box-shadow: rgba(232, 255, 150, 0.35) 0px 5px 15px;
     margin-top: 15px;
     gap: 15px;
 }
-.photo-card {
-background-color: antiquewhite;
-display: flex;
-flex-direction: column;
-width: 400px;
-height: 350px;
 
-}
 .photo-card img {
     width: 100%;
     height: 100%;
@@ -77,11 +60,4 @@ justify-content: space-around;
     color: inherit;
     text-decoration: none;
     
- }
- .scroll-up {
-    background-color: antiquewhite;
-    border-radius: 50%;
-    position: fixed;
-    bottom: 20px;
-    right:20px;
  }

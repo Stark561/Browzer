@@ -8,7 +8,6 @@ const input = form.elements.searchQuery;
 const btn = form.elements.submitBtn;
 const gallery = document.querySelector('.gallery');
 const loader = document.querySelector('#loader');
-const btnScrollUp = document.querySelector('.scroll-up');
 form.addEventListener('submit', onBtnSubmit);
 let page = 1;
 let totalImages = '';
@@ -105,14 +104,6 @@ async function loadContent() {
  ).join('')
 };
 
-btnScrollUp.addEventListener('click', onScrollUp);
-
-function onScrollUp(e) {
-  window.scrollTo({
-    top: 0,
-    behavior:'smooth'
-  })
-}
 function smoothScroll() {
   const { height: cardHeight } = document
     .querySelector(".gallery")
