@@ -7,22 +7,20 @@
     <link rel="stylesheet" href="./sass/index.scss" />
     <script type="module" src="./index.js"></script>
   </head>
-  <body>
-    <form class="search-form" id="search-form">
+  <body class="body">
+    <form class="header" id="search-form">
       <div class="input-container">
         <input
-          type="text"
+          class="search-string"
           name="searchQuery"
+          type="text"
           autocomplete="off"
-          placeholder="Search images..."
+          placeholder="Что вы ищете...?"
         />
-        <button type="submit" name="submitBtn">
-          <svg width="30" height="31">
-            <!-- <use href=""></use> -->
-          </svg>
-        </button>
       </div>
     </form>
     <div class="gallery"></div>
     <div id="loader"></div>
 </html>
+
+

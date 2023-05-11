@@ -3,11 +3,10 @@ import simpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 import Notiflix from "notiflix";
 
-const form = document.querySelector('.search-form');
-const input = form.elements.searchQuery;
-const btn = form.elements.submitBtn;
-const gallery = document.querySelector('.gallery');
+const form = document.querySelector('.header');
 const loader = document.querySelector('#loader');
+const input = form.elements.searchQuery;
+const gallery = document.querySelector('.gallery');
 form.addEventListener('submit', onBtnSubmit);
 let page = 1;
 let totalImages = '';
@@ -17,11 +16,11 @@ let isFormSubmitted = false;
 const options = {
     rootMargin: '0px',
     threshold: 1.0
-  };
+ };
 
   let lightbox = new simpleLightbox('.gallery a');
 
-function onBtnSubmit(e) {
+ function onBtnSubmit(e) {
   e.preventDefault();
   gallery.innerHTML = '';
   isFormSubmitted = false;
@@ -36,41 +35,39 @@ function onBtnSubmit(e) {
       page++;
     }
   }, options);
-
   observer.observe(loader);
-}
-async function loadContent() {
- 
+ }
+
+  async function loadContent() {
   const inputValue = input.value;
   const API_KEY = '36186802-862f6fad69a85448277218aac';
   const BASE_URL = `https://pixabay.com/api`;
   const END_POINT = `/?key=${API_KEY}&q=${inputValue}=&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${page}`
   const url = BASE_URL + END_POINT;
- try {
-    const response = await axios.get(url);
-    totalImages = response.data.totalHits;
-    if (totalImages === 0) {
-      return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-    } 
-    if (!isFormSubmitted) {
-      Notiflix.Notify.success(`Hooray! We found ${totalImages} images.`);
-      isFormSubmitted = true;
-    }
+  try {
+  const response = await axios.get(url);
+  totalImages = response.data.totalHits;
+  if (totalImages === 0) {
+    return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
+  } 
+  if (!isFormSubmitted) {
+    Notiflix.Notify.success(`Hooray! We found ${totalImages} images.`);
+    isFormSubmitted = true;
+  }
 
-    const images = response.data.hits.map(image => ({
-      webformatURL: image.webformatURL,
-      largeImageURL: image.largeImageURL,
-      tags: image.tags,
-      likes: image.likes,
-      views: image.views,
-      comments: image.comments,
-      downloads: image.downloads
-    }))
+  const images = response.data.hits.map(image => ({
+  webformatURL: image.webformatURL,
+  largeImageURL: image.largeImageURL,
+  tags: image.tags,
+  likes: image.likes,
+  views: image.views,
+  comments: image.comments,
+  downloads: image.downloads
+  }))
 
-    gallery.insertAdjacentHTML('beforeend', renderMarkup(images));
-    lightbox.refresh();
-    const firstChild = gallery.firstElementChild;
-
+  gallery.insertAdjacentHTML('beforeend', renderMarkup(images));
+  lightbox.refresh();
+  const firstChild = gallery.firstElementChild;
     if (firstChild) { 
       setTimeout(smoothScroll, 400);
     }
@@ -80,7 +77,8 @@ async function loadContent() {
 }
 
  function renderMarkup(data) {
- return data.map(({webformatURL,largeImageURL,tags, likes, views, comments, downloads}) => `<a href="${largeImageURL}"><div class="photo-card">
+ return data.map(({webformatURL,largeImageURL,tags, likes, views, comments, downloads}) => 
+ `<a href="${largeImageURL}"><div class="photo-card">
   <img src="${webformatURL}" alt="${tags}" loading="lazy" />
   <div class="info">
     <p class="info-item">
