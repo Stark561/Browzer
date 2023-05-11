@@ -41,19 +41,22 @@ background: linear-gradient(90deg, rgba(21,12,145,1) 0%, rgba(142,34,117,1) 13%,
     margin-top: 15px;
     gap: 15px;
 }
+
 .photo-card {
-background-color: antiquewhite;
+background-color: rgb(192, 230, 182);
 display: flex;
 flex-direction: column;
 width: 400px;
 height: 350px;
-
+border-radius: 10px;
 }
+
 .photo-card img {
 width: 100%;
 height: 100%;
 object-fit: cover;
 overflow: hidden;
+border-radius: 10px;
 }
 
 .info {
